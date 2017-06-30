@@ -33,5 +33,6 @@ public class AlmacenServisImpl implements AlmacenServis{
     public void eliminarEntidad(Integer id){dao.eliminarEntidad(id);}
     @Override
     public Almacen buscarEntidadId(int id){ return dao.buscarEntidadId(id);}
- 
+
+    
 }
