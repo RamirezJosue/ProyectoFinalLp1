@@ -43,16 +43,16 @@ public class VentasCController {
 
     @Autowired
     VentasServis service;
-    
+
     @Autowired
     AlmacenServis serviceAlm;
 
     @Autowired
     ClienteServis serviceClie;
-    
+
     @Autowired
     DocumentosServis serviceDoc;
-    
+
     @Autowired
     EmpleadoServis serviceEmpl;
 
@@ -78,13 +78,13 @@ public class VentasCController {
         return new ModelAndView("ventas/mainVentas", modelo);
     }
 
-     @RequestMapping(value = "eliminarVentas", method = RequestMethod.GET)
-        public  ModelAndView eliminarVentas(HttpServletRequest r) {
-            int idEntidad=Integer.parseInt(r.getParameter("id"));
-            service.eliminarEntidadId(idEntidad);
-            System.out.println("si llego al metodo");
-            return new ModelAndView(new RedirectView("list"));
-        }
+    @RequestMapping(value = "eliminarVentas", method = RequestMethod.GET)
+    public ModelAndView eliminarVentas(HttpServletRequest r) {
+        int idEntidad = Integer.parseInt(r.getParameter("id"));
+        service.eliminarEntidadId(idEntidad);
+        System.out.println("si llego al metodo");
+        return new ModelAndView(new RedirectView("list"));
+    }
 
     @RequestMapping(value = "formVentas", method = RequestMethod.GET)
     public ModelAndView irFormulario(@ModelAttribute("modeloVentas") Ventas entidad, BindingResult result) {
@@ -93,7 +93,10 @@ public class VentasCController {
         modelo.put("listaTemporadaX", service.listarEntidad());
         modelo.put("listaTemporada2", "");
         modelo.put("listaTemporada3", "");
-       
+        modelo.put("ListCliente", serviceClie.listarEntidad());
+        modelo.put("ListAlmacen", serviceAlm.listarEntidad());
+        modelo.put("ListDocumento", serviceDoc.listarEntidad());
+        modelo.put("ListEmpleado", serviceEmpl.listarEntidad());
         return new ModelAndView("ventas/formVentas", modelo);
     }
 
@@ -101,11 +104,13 @@ public class VentasCController {
     public ModelAndView guardarVentasXX(@ModelAttribute Ventas entidad,
             BindingResult result) {
 
-       
+        System.out.println("josue " + entidad.getIdCliente());
+        System.out.println("josue " + entidad.getIdCliente().getIdCliente());
+        System.out.println("josue " + entidad.getIdVenta());
         //methodo para devolver una persona por ID
         // o puedes guardar directamente ID
-        Ventas ventas = new Ventas();
-        ventas.setEstado("");
+       // Ventas ventas = new Ventas();
+        
         service.guardarEntidad(entidad);
 
         return new ModelAndView(new RedirectView("list"));
@@ -119,22 +124,24 @@ public class VentasCController {
         return new ModelAndView("ventas/formUVentas", "ModeloVentas", entidad);
     }
 
-     @RequestMapping(value = "modificarVentasX", method = RequestMethod.GET)
-        public String modificarVentasX(HttpServletRequest r, Model model ){
-           int id=Integer.parseInt(r.getParameter("id"));
-               Ventas ventas=null;
-               ventas=service.buscarEntidadId(id);
-               model.addAttribute("ModeloVentas", ventas);  
-              
-            return "ventas/formUVentas";
-        }
+    @RequestMapping(value = "modificarVentasX", method = RequestMethod.GET)
+    public String modificarVentasX(HttpServletRequest r, Model model) {
+        int id = Integer.parseInt(r.getParameter("id"));
+        Ventas ventas = null;
+        ventas = service.buscarEntidadId(id);
+        model.addAttribute("ModeloVentas", ventas);
+        model.addAttribute("ListCliente", serviceClie.listarEntidad());
+        model.addAttribute("ListAlmacen", serviceAlm.listarEntidad());
+        model.addAttribute("ListDocumento", serviceDoc.listarEntidad());
 
-        @RequestMapping(value = "actualizarVentas", method = RequestMethod.POST)
-        public ModelAndView gactualizarVentasXX(@ModelAttribute("ModeloVentas") Ventas entidad,
-                                              BindingResult result ){
-                service.modificarEntidadId(entidad);
-            return new ModelAndView(new RedirectView("list"));
-        }
+        return "ventas/formUVentas";
+    }
+
+    @RequestMapping(value = "actualizarVentas", method = RequestMethod.POST)
+    public ModelAndView gactualizarVentasXX(@ModelAttribute("ModeloVentas") Ventas entidad,
+            BindingResult result) {
+        service.modificarEntidadId(entidad);
+        return new ModelAndView(new RedirectView("list"));
+    }
 
 }
-    

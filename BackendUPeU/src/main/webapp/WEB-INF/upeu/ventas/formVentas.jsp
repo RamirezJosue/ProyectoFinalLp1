@@ -18,55 +18,49 @@
     <body>
         <div>
 
-            <fm:form modelAttribute="modeloDiagnostico" method="post" action="guardarDiagnostico">
+            <fm:form modelAttribute="modeloVentas" method="post" action="guardarVentas">
                 <table>
 
                     <tr>
+                        <td><fm:label path="codigo">codigo</fm:label> </td>
+                        <td><fm:input path="codigo" /></td>
+                    </tr>
+                    <tr>
                         <td><fm:label path="estado">Estado</fm:label> </td>
-                        <td><fm:input path="estado" /></td>
-                    </tr>
-                    <tr>
-                        <td><fm:label path="fecha">Fecha</fm:label> </td>
-                        <td><fm:input path="fecha" size="60" /></td>
-                    </tr>
-
-                    <tr>
-                        <td><fm:label path="descripcion">Descripcion</fm:label> </td>                        
-                        <td><fm:input path="descripcion" size="60" /></td>
-                    </tr>              
-
-                    <tr>
-                        <td><fm:label path="otros">Otros</fm:label> </td>                        
-                        <td><fm:input path="otros" size="60" /></td>
+                        <td><fm:input path="estado" size="60" /></td>
                     </tr>  
 
                     <tr>
-                        <td><fm:label path="idPaciente.idPaciente">Paciente</fm:label> </td> 
+                        <td><fm:label path="idCliente.idCliente">Cliente</fm:label> </td> 
                             <td>
-                            <fm:select path="idPaciente.idPaciente" cssClass="myinput"  >
+                            <fm:select path="idCliente.idCliente" cssClass="myinput"  >
                                 <fm:option value=""><c:out value="--------------------"/> </fm:option>
-                                <c:if test="${!empty ListPaciente}">
-                                    <c:forEach var="pa"  items="${ListPaciente}">
-                                        <fm:option value="${pa.idPaciente}" >
+                                <c:if test="${!empty ListCliente}">
+                                    <c:forEach var="pa"  items="${ListCliente}">
+                                        <fm:option value="${pa.idCliente}" >
                                             <c:out value="${pa.idPersona.nombres}"/>
                                         </fm:option>
                                     </c:forEach>
                                 </c:if>
                             </fm:select> 
                         </td>
-                    </tr>   
-
-
-
+                    </tr> 
                     <tr>
-                        <td><fm:label path="idDoctor.idDoctor">Doctor</fm:label> </td> 
+                        <td><fm:label path="idEmpleado.idEmpleado">Empleado</fm:label> </td> 
                             <td>
-                            <fm:select path="idDoctor.idDoctor"  cssClass="myinput" >
+                            <fm:select path="idEmpleado.idEmpleado" cssClass="myinput"  >
                                 <fm:option value=""><c:out value="--------------------"/> </fm:option>
-                                <fm:options items="${ListDoctor}" itemValue="idDoctor" itemLabel="idPersona.nombres"/>
-                            </fm:select>
+                                <c:if test="${!empty ListEmpleado}">
+                                    <c:forEach var="pe"  items="${ListEmpleado}">
+                                        <fm:option value="${pe.idEmpleado}" >
+                                            <c:out value="${pe.idPersona.nombres}"/>
+                                        </fm:option>
+                                    </c:forEach>
+                                </c:if>
+                            </fm:select> 
                         </td>
-                    </tr>  
+                    </tr>
+                    
 
                     <tr>                        
                         <td colspan="2"><input type="submit" value="Enviar" > </td>

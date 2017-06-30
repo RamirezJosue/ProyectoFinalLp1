@@ -19,7 +19,7 @@ public class VentasDaoImpl extends SysDataAccess<Integer, Ventas> implements Ven
     @SuppressWarnings("unchecked")
     public List<Ventas> listarEntidad(){ return getListAll();}
     public Ventas buscarEntidadId(int id) {return getByKey(id);}
-    public void guardarEntidad(Ventas entidad) {save(entidad); }  
+    public void guardarEntidad(Ventas entidad) {savev(entidad); }  
     public void eliminarEntidadId(int id) {delete(id);}    
     public void modificarEntidadId(Ventas entidad) {update(entidad);}         
     public List<Ventas> listarPorNombre(String dato){
