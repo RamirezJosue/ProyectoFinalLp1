@@ -18,4 +18,5 @@ public interface AlmacenServis {
     public void modificarEntidad(Almacen entidad);
     public void eliminarEntidad(Integer id);
     public Almacen buscarEntidadId(int id);    
+
 }
