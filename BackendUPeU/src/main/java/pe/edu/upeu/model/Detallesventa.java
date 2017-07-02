@@ -5,6 +5,7 @@
  */
 package pe.edu.upeu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
 /**
  *
@@ -49,6 +51,7 @@ public class Detallesventa implements Serializable {
     @Column(name = "igv")
     private int igv;
     @JoinColumn(name = "idProducto", referencedColumnName = "idProducto")
+    @JsonIgnore
     @ManyToOne(optional = false)
     private Producto idProducto;
     @JoinColumn(name = "idVenta", referencedColumnName = "idVenta")

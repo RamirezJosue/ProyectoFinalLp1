@@ -12,16 +12,20 @@ import pe.edu.upeu.model.Detallesventa;
 
 /**
  *
- * @author Alumnos
+ * @author David
  */
-@Repository("detallesventaDao")
+@Repository("DetallesventaDao")
 public class DetallesventaDaoImpl extends SysDataAccess<Integer, Detallesventa> implements DetallesventaDao{
-    
     @SuppressWarnings("unchecked")
-    public List<Detallesventa> listarEntidad(){return getListAll();}
-    public Detallesventa guardarEntidad(Detallesventa entidad){ return save(entidad);}
-    public void modificarEntidad(Detallesventa entidad){update(entidad);}
-    public void eliminarEntidad(Integer id){delete(id);}
-    public Detallesventa buscarEntidadId(int id){return getById(id);}
-        
+    public List<Detallesventa> listarEntidad(){ return getListAll();}
+    public Detallesventa buscarEntidadId(int id) {return getByKey(id);}
+    public void guardarEntidad(Detallesventa entidad) {savev(entidad); }  
+    public void eliminarEntidadId(int id) {delete(id);}    
+    public void modificarEntidadId(Detallesventa entidad) {update(entidad);}         
+    public List<Detallesventa> listarPorNombre(String dato){
+    return (List<Detallesventa>)sessionFactory.getCurrentSession()
+            .createQuery("select a from Diagnostico a where a.idDiagnostico.dni fechaAlta ? ")        
+            .setString(0, "%"+dato+"%")
+            .list();
+    }     
 }

@@ -32,13 +32,13 @@ public class DetallesventaController {
 
     @RequestMapping(value = "/edit", method = {RequestMethod.GET, RequestMethod.POST})
     public void modificarEntidadId(@RequestBody Detallesventa detallesventa) {
-        service.modificarEntidad(detallesventa);
+        service.modificarEntidadId(detallesventa);
     }
 
     @RequestMapping(value = "remove/{id}", method = RequestMethod.DELETE)
     public void eliminarEntidadId(@PathVariable int id) {
         System.out.println("Holas "+id);
-        service.eliminarEntidad(id);
+        service.eliminarEntidadId(id);
     }
 
     @RequestMapping(value = "find/{id}", method = RequestMethod.GET)

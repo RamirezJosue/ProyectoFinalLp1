@@ -16,7 +16,7 @@ import pe.edu.upeu.dao.VentasDao;
  * @author Alumnos
  */
 
-@Service("detalleDiagnosticoServis")
+@Service("VentasServis")
 @Transactional
 public class VentasServisImpl implements VentasServis{
     @Autowired

@@ -7,15 +7,18 @@ package pe.edu.upeu.service;
 
 import java.util.List;
 import pe.edu.upeu.model.Detallesventa;
-
+        
 /**
  *
  * @author Alumnos
  */
 public interface DetallesventaServis {
-    public List<Detallesventa> listarEntidad();    
-    public Detallesventa guardarEntidad(Detallesventa entidad);
-    public void modificarEntidad(Detallesventa entidad);
-    public void eliminarEntidad(Integer id);
-    public Detallesventa buscarEntidadId(int id);    
+    public List<Detallesventa> listarEntidad();
+    public Detallesventa buscarEntidadId(int id);
+    public void guardarEntidad(Detallesventa entidad);
+    public void eliminarEntidadId(int id);
+    public void modificarEntidadId(Detallesventa entidad);  
+    public List<Detallesventa> listarPorNombre(String dato);
+    
+    
 }
