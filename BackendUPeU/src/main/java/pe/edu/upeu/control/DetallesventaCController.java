@@ -33,7 +33,7 @@ import pe.edu.upeu.service.VentasServis;
  * @author Alumnos
  */
 @Controller
-@RequestMapping("/Detallesventa")
+@RequestMapping("/detallesventa")
 public class DetallesventaCController {
 
     @Autowired

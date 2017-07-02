@@ -20,7 +20,7 @@ import pe.edu.upeu.service.DetallesventaServis;
  * @author David
  */
 @RestController
-@RequestMapping("/detallesventa")
+@RequestMapping("/Detallesventa")
 public class DetallesventaController {
  
    @Autowired
