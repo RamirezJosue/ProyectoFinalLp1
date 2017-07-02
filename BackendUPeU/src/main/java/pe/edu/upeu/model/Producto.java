@@ -5,6 +5,7 @@
  */
 package pe.edu.upeu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -79,13 +80,16 @@ public class Producto implements Serializable {
     @Column(name = "precioVenta")
     private int precioVenta;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
+    @JsonIgnore
     private Collection<Detallesventa> detallesventaCollection;
     @JoinColumn(name = "idCategoria", referencedColumnName = "idCategoria")
     @ManyToOne(optional = false)
     private Categoria idCategoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
+    @JsonIgnore
     private Collection<Almacen> almacenCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
+    @JsonIgnore
     private Collection<Detallecompra> detallecompraCollection;
 
     public Producto() {

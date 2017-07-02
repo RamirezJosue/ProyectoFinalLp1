@@ -5,6 +5,7 @@
  */
 package pe.edu.upeu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -32,8 +33,8 @@ import javax.validation.constraints.Size;
 public class Documentos implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDocumento")
+    @JsonIgnore
     private List<Ventas> ventasList;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
