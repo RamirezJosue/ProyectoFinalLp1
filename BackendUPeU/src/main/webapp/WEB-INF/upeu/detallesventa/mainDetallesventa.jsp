@@ -73,6 +73,7 @@
                           <c:if test="${!empty ListaDetallesventa}">
                             <table border="1">
                                 <tr>
+                                    <th>Cliente</th>
                                     <th>Productos</th>
                                     <th>Codigo</th>
                                     <th>Estado</th>
@@ -82,6 +83,7 @@
                                 </tr>
                 <c:forEach items="${ListaDetallesventa}" var= "dato">   
                 <tr>
+                    <td><c:out value="${dato.idVenta.idCliente.idPersona.nombres}"/></td>
                     <td><c:out value="${dato.idProducto.nombre}"/></td>
                     <td><c:out value="${dato.idProducto.codigoDBarra}"/></td>
                     <td><c:out value="${dato.idVenta.estado}"/></td>

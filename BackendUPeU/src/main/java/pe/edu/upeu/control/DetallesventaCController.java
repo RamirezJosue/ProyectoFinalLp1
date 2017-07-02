@@ -23,8 +23,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import pe.edu.upeu.model.Detallesventa;
+import pe.edu.upeu.service.ClienteServis;
 
 import pe.edu.upeu.service.DetallesventaServis;
+import pe.edu.upeu.service.DocumentosServis;
+import pe.edu.upeu.service.EmpleadoServis;
 import pe.edu.upeu.service.ProductoServis;
 import pe.edu.upeu.service.VentasServis;
 
@@ -45,7 +48,15 @@ public class DetallesventaCController {
     @Autowired
     VentasServis serviceVent;
 
+    @Autowired
+    ClienteServis serviceClie;
 
+    @Autowired
+    DocumentosServis serviceDoc;
+    
+    @Autowired
+    EmpleadoServis serviceEmpl;
+    
     @Autowired
     MessageSource messageSource;
 
@@ -85,6 +96,9 @@ public class DetallesventaCController {
         modelo.put("listaTemporada3", "");
         modelo.put("ListProducto", serviceProd.listarEntidad());
         modelo.put("ListVenta", serviceVent.listarEntidad());
+        modelo.put("ListCliente", serviceClie.listarEntidad());
+        modelo.put("ListDocumento", serviceDoc.listarEntidad());
+        modelo.put("ListEmpleado", serviceEmpl.listarEntidad());
         return new ModelAndView("detallesventa/formDetallesventa", modelo);
     }
 
@@ -95,8 +109,8 @@ public class DetallesventaCController {
         System.out.println("josue " + entidad.toString());
         //methodo para devolver una persona por ID
         // o puedes guardar directamente ID
-       // Ventas ventas = new Ventas();
-        
+        // Ventas ventas = new Ventas();
+
         service.guardarEntidad(entidad);
 
         return new ModelAndView(new RedirectView("list"));
@@ -118,6 +132,9 @@ public class DetallesventaCController {
         model.addAttribute("ModeloDetallesventa", detallesventa);
         model.addAttribute("ListProducto", serviceProd.listarEntidad());
         model.addAttribute("ListVenta", serviceVent.listarEntidad());
+        model.addAttribute("ListCliente", serviceClie.listarEntidad());
+        model.addAttribute("ListDocumento", serviceDoc.listarEntidad());
+        model.addAttribute("ListEmpleado", serviceEmpl.listarEntidad());
 
         return "detallesventa/formUDetallesventa";
     }
