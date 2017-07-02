@@ -74,15 +74,19 @@
                             <table border="1">
                                 <tr>
                                     <th>Productos</th>
+                                    <th>Codigo</th>
                                     <th>Estado</th>
                                     <th>Cantidad</th>
+                                    <th>Precio Venta</th>
                                     <th>Opciones</th>
                                 </tr>
                 <c:forEach items="${ListaDetallesventa}" var= "dato">   
                 <tr>
                     <td><c:out value="${dato.idProducto.nombre}"/></td>
+                    <td><c:out value="${dato.idProducto.codigoDBarra}"/></td>
                     <td><c:out value="${dato.idVenta.estado}"/></td>
                     <td><c:out value="${dato.cantidad}"/></td>
+                    <td><c:out value="${dato.idProducto.precioVenta}"/></td>
                     
                     <td>
                         <a href="eliminarDetallesventa?id=${dato.idDetalle}">Eliminar</a>&emsp14;  
