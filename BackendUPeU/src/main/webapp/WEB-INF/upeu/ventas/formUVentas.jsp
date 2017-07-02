@@ -59,6 +59,22 @@
                             </fm:select> 
                         </td>
                     </tr>
+
+                    <tr>
+                        <td><fm:label path="idDocumento.idDocumento">Documento</fm:label> </td> 
+                            <td>
+                            <fm:select path="idDocumento.idDocumento" cssClass="myinput"  >
+                                <fm:option value=""><c:out value="--------------------"/> </fm:option>
+                                <c:if test="${!empty ListDocumento}">
+                                    <c:forEach var="doc"  items="${ListDocumento}">
+                                        <fm:option value="${doc.idDocumento}" >
+                                            <c:out value="${doc.nombre}"/>
+                                        </fm:option>
+                                    </c:forEach>
+                                </c:if>
+                            </fm:select> 
+                        </td>
+                    </tr>
                     <tr>                        
                         <td colspan="2">
                             <fm:hidden path="idVenta" />

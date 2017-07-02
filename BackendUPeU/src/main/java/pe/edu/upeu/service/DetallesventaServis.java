@@ -6,16 +6,16 @@
 package pe.edu.upeu.service;
 
 import java.util.List;
-import pe.edu.upeu.model.Almacen;
+import pe.edu.upeu.model.Detallesventa;
 
 /**
  *
  * @author Alumnos
  */
-public interface AlmacenServis {
-    public List<Almacen> listarEntidad();    
-    public Almacen guardarEntidad(Almacen entidad);
-    public void modificarEntidad(Almacen entidad);
+public interface DetallesventaServis {
+    public List<Detallesventa> listarEntidad();    
+    public Detallesventa guardarEntidad(Detallesventa entidad);
+    public void modificarEntidad(Detallesventa entidad);
     public void eliminarEntidad(Integer id);
-    public Almacen buscarEntidadId(int id);    
+    public Detallesventa buscarEntidadId(int id);    
 }

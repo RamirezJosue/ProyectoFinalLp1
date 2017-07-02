@@ -9,29 +9,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pe.edu.upeu.model.Almacen;
-import pe.edu.upeu.dao.AlmacenDao;
+import pe.edu.upeu.model.Detallesventa;
+import pe.edu.upeu.dao.DetallesventaDao;
 
 /**
  *
  * @author Alumnos
  */
-@Service("almacen")
+@Service("detallesventa")
 @Transactional
-public class AlmacenServisImpl implements AlmacenServis{
+public class DetallesventaServisImpl implements DetallesventaServis{
  
     @Autowired
-    public AlmacenDao dao;
+    public DetallesventaDao dao;
 
     @Override
-    public List<Almacen> listarEntidad(){ return dao.listarEntidad();}
+    public List<Detallesventa> listarEntidad(){ return dao.listarEntidad();}
     @Override
-    public Almacen guardarEntidad(Almacen entidad){ return dao.guardarEntidad(entidad);}
+    public Detallesventa guardarEntidad(Detallesventa entidad){ return dao.guardarEntidad(entidad);}
     @Override
-    public void modificarEntidad(Almacen entidad){dao.modificarEntidad(entidad);}
+    public void modificarEntidad(Detallesventa entidad){dao.modificarEntidad(entidad);}
     @Override
     public void eliminarEntidad(Integer id){dao.eliminarEntidad(id);}
     @Override
-    public Almacen buscarEntidadId(int id){ return dao.buscarEntidadId(id);}
+    public Detallesventa buscarEntidadId(int id){ return dao.buscarEntidadId(id);}
  
 }

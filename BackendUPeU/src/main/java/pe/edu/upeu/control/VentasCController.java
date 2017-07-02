@@ -104,9 +104,7 @@ public class VentasCController {
     public ModelAndView guardarVentasXX(@ModelAttribute Ventas entidad,
             BindingResult result) {
 
-        System.out.println("josue " + entidad.getIdCliente());
-        System.out.println("josue " + entidad.getIdCliente().getIdCliente());
-        System.out.println("josue " + entidad.getIdVenta());
+        System.out.println("josue " + entidad.toString());
         //methodo para devolver una persona por ID
         // o puedes guardar directamente ID
        // Ventas ventas = new Ventas();
@@ -131,7 +129,7 @@ public class VentasCController {
         ventas = service.buscarEntidadId(id);
         model.addAttribute("ModeloVentas", ventas);
         model.addAttribute("ListCliente", serviceClie.listarEntidad());
-        model.addAttribute("ListAlmacen", serviceAlm.listarEntidad());
+        model.addAttribute("ListEmpleado", serviceEmpl.listarEntidad());
         model.addAttribute("ListDocumento", serviceDoc.listarEntidad());
 
         return "ventas/formUVentas";

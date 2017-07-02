@@ -5,9 +5,8 @@
  */
 package pe.edu.upeu.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,8 +20,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,14 +27,12 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "documentos")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Documentos.findAll", query = "SELECT d FROM Documentos d")
-    , @NamedQuery(name = "Documentos.findByIdDocumento", query = "SELECT d FROM Documentos d WHERE d.idDocumento = :idDocumento")
-    , @NamedQuery(name = "Documentos.findByBoleta", query = "SELECT d FROM Documentos d WHERE d.boleta = :boleta")
-    , @NamedQuery(name = "Documentos.findByFactura", query = "SELECT d FROM Documentos d WHERE d.factura = :factura")
-    , @NamedQuery(name = "Documentos.findByTicket", query = "SELECT d FROM Documentos d WHERE d.ticket = :ticket")})
+    @NamedQuery(name = "Documentos.findAll", query = "SELECT d FROM Documentos d")})
 public class Documentos implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDocumento")
+    private List<Ventas> ventasList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,25 +42,9 @@ public class Documentos implements Serializable {
     private Integer idDocumento;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
-    @Column(name = "boleta")
-    private String boleta;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
-    @Column(name = "factura")
-    private String factura;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
-    @Column(name = "ticket")
-    private String ticket;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDocumento")
-    @JsonIgnore
-    private Collection<Facturadcompra> facturadcompraCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDocumento")
-    @JsonIgnore
-    private Collection<Ventas> ventasCollection;
+    @Size(min = 1, max = 60)
+    @Column(name = "nombre")
+    private String nombre;
 
     public Documentos() {
     }
@@ -74,11 +53,9 @@ public class Documentos implements Serializable {
         this.idDocumento = idDocumento;
     }
 
-    public Documentos(Integer idDocumento, String boleta, String factura, String ticket) {
+    public Documentos(Integer idDocumento, String nombre) {
         this.idDocumento = idDocumento;
-        this.boleta = boleta;
-        this.factura = factura;
-        this.ticket = ticket;
+        this.nombre = nombre;
     }
 
     public Integer getIdDocumento() {
@@ -89,46 +66,12 @@ public class Documentos implements Serializable {
         this.idDocumento = idDocumento;
     }
 
-    public String getBoleta() {
-        return boleta;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setBoleta(String boleta) {
-        this.boleta = boleta;
-    }
-
-    public String getFactura() {
-        return factura;
-    }
-
-    public void setFactura(String factura) {
-        this.factura = factura;
-    }
-
-    public String getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(String ticket) {
-        this.ticket = ticket;
-    }
-
-    @XmlTransient
-    public Collection<Facturadcompra> getFacturadcompraCollection() {
-        return facturadcompraCollection;
-    }
-
-    public void setFacturadcompraCollection(Collection<Facturadcompra> facturadcompraCollection) {
-        this.facturadcompraCollection = facturadcompraCollection;
-    }
-
-    @XmlTransient
-    public Collection<Ventas> getVentasCollection() {
-        return ventasCollection;
-    }
-
-    public void setVentasCollection(Collection<Ventas> ventasCollection) {
-        this.ventasCollection = ventasCollection;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Override
@@ -154,6 +97,14 @@ public class Documentos implements Serializable {
     @Override
     public String toString() {
         return "pe.edu.upeu.model.Documentos[ idDocumento=" + idDocumento + " ]";
+    }
+
+    public List<Ventas> getVentasList() {
+        return ventasList;
+    }
+
+    public void setVentasList(List<Ventas> ventasList) {
+        this.ventasList = ventasList;
     }
     
 }

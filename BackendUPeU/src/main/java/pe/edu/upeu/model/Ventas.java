@@ -5,11 +5,8 @@
  */
 package pe.edu.upeu.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,12 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,12 +26,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "ventas")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Ventas.findAll", query = "SELECT v FROM Ventas v")
-    , @NamedQuery(name = "Ventas.findByIdVenta", query = "SELECT v FROM Ventas v WHERE v.idVenta = :idVenta")
-    , @NamedQuery(name = "Ventas.findByCodigo", query = "SELECT v FROM Ventas v WHERE v.codigo = :codigo")
-    , @NamedQuery(name = "Ventas.findByEstado", query = "SELECT v FROM Ventas v WHERE v.estado = :estado")})
+    @NamedQuery(name = "Ventas.findAll", query = "SELECT v FROM Ventas v")})
 public class Ventas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,9 +46,6 @@ public class Ventas implements Serializable {
     @Size(min = 1, max = 2)
     @Column(name = "estado")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
-    @JsonIgnore
-    private Collection<Detallesventa> detallesventaCollection;
     @JoinColumn(name = "idCliente", referencedColumnName = "idCliente")
     @ManyToOne(optional = false)
     private Cliente idCliente;
@@ -104,15 +91,6 @@ public class Ventas implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    @XmlTransient
-    public Collection<Detallesventa> getDetallesventaCollection() {
-        return detallesventaCollection;
-    }
-
-    public void setDetallesventaCollection(Collection<Detallesventa> detallesventaCollection) {
-        this.detallesventaCollection = detallesventaCollection;
     }
 
     public Cliente getIdCliente() {
