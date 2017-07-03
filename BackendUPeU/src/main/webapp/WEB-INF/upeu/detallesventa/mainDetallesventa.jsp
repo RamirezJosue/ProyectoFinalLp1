@@ -41,7 +41,7 @@
 
         <div id="idFormulario" align="center">
             
-        <form  id="formBuscar" action="buscarDiagnostico"  method="post" name="formBuscar" >
+        <form  id="formBuscar" action="buscarDetallesventa"  method="post" name="formBuscar" >
         <table align="center"  class="myform">
         
         <tr align="center">
@@ -73,8 +73,9 @@
                           <c:if test="${!empty ListaDetallesventa}">
                             <table border="1">
                                 <tr>
-                                    <th>Cliente</th>
+                                    
                                     <th>Productos</th>
+                                    <th>Categoria</th>
                                     <th>Codigo</th>
                                     <th>Estado</th>
                                     <th>Cantidad</th>
@@ -83,8 +84,8 @@
                                 </tr>
                 <c:forEach items="${ListaDetallesventa}" var= "dato">   
                 <tr>
-                    <td><c:out value="${dato.idVenta.idCliente.idPersona.nombres}"/></td>
                     <td><c:out value="${dato.idProducto.nombre}"/></td>
+                    <td><c:out value="${dato.idProducto.idCategoria.categoria}"/></td>
                     <td><c:out value="${dato.idProducto.codigoDBarra}"/></td>
                     <td><c:out value="${dato.idVenta.estado}"/></td>
                     <td><c:out value="${dato.cantidad}"/></td>

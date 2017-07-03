@@ -24,7 +24,7 @@ public class DetallesventaDaoImpl extends SysDataAccess<Integer, Detallesventa> 
     public void modificarEntidadId(Detallesventa entidad) {update(entidad);}         
     public List<Detallesventa> listarPorNombre(String dato){
     return (List<Detallesventa>)sessionFactory.getCurrentSession()
-            .createQuery("select a from Diagnostico a where a.idDiagnostico.dni fechaAlta ? ")        
+            .createQuery("select a from Detallesventa a where a.idProducto.nombre like? ")        
             .setString(0, "%"+dato+"%")
             .list();
     }     
